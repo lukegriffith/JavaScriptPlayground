@@ -1,39 +1,65 @@
 
 
 // Built a function to generate a node object
-function Node(value, parent, left, right){
+function Node(value){
 
     obj = new Object
 
     obj.value = value
-    obj.parent = parent
-    obj.left = left
-    obj.right = right
+    obj.left = null
+    obj.right = null
 
     return obj
 }
 
+function Insert(Tree, NewValue) {
+
+    if (Tree == null) {
+        return Node(NewValue)
+    }
+    else if (Tree.value > NewValue) {
+        Tree.left = Insert(Tree.left, NewValue)
+    }
+    else if (Tree.value < NewValue) {
+        Tree.right = Insert(Tree.right, NewValue)
+    }
+    else {
+
+    }
+    return Tree
+}
+
+
+treeRoot = Insert(null, "G")
+
+function buildTree(element, index, array) {
+    Insert(treeRoot, element)
+}
+
+["A","B","C","D","E","F","H","I","J","K","L","M","N","O","P"].forEach(buildTree)
+
+
 // Created an alphabetically sorted binary tree
 
-treeRoot = Node("G", null, null, null )
-
-d = treeRoot.left = Node("D", treeRoot)
-
-b = d.left = Node("B", d)
-a = b.left = Node("A", b)
-c = b.right = Node("C", b)
-
-f = d.right = Node("F", d)
-e = f.left = Node("E", f)
-
-k = treeRoot.right = Node("K", treeRoot)
-
-i = k.left = Node("I",k)
-h = i.left = Node("H",i)
-j = i.right = Node ("J",i)
-
-m = k.right = Node("M",k)
-l = m.left = Node("L",m)
+//   treeRoot = Node("G", null, null, null )
+//   
+//   d = treeRoot.left = Node("D", treeRoot)
+//   
+//   b = d.left = Node("B", d)
+//   a = b.left = Node("A", b)
+//   c = b.right = Node("C", b)
+//   
+//   f = d.right = Node("F", d)
+//   e = f.left = Node("E", f)
+//   
+//   k = treeRoot.right = Node("K", treeRoot)
+//   
+//   i = k.left = Node("I",k)
+//   h = i.left = Node("H",i)
+//   j = i.right = Node ("J",i)
+//   
+//   m = k.right = Node("M",k)
+//   l = m.left = Node("L",m)
 
 
 // function ripped form computer science book to search tree.
@@ -67,3 +93,5 @@ function PrintTree(Tree) {
 
 
 PrintTree(treeRoot)
+
+console.log(treeRoot)
