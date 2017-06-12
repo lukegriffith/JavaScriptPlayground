@@ -1,79 +1,79 @@
-function Dict(){
-    obj = {}
-    obj.Exists = function(key){
-        return obj[key] != undefined
+var Queue = function(){
+    this.items=[]
+};
+Queue.prototype.enqueue = function(obj){
+    this.items.push(obj);
+}
+Queue.prototype.dequeue = function(){
+    return this.items.pop();
+}
+Queue.prototype.isEmpty = function(){
+    return this.items.length === 0;
+}
+
+
+/*
+ * Performs a breadth-first search on a graph
+ * @param {array} graph - Graph, represented as adjacency lists.
+ * @param {number} source - The index of the source vertex.
+ * @returns {array} Array of objects describing each vertex, like
+ *     [{distance: _, predecessor: _ }]
+ */
+var doBFS = function(graph, source) {
+    var bfsInfo = [];
+
+    for (var i = 0; i < graph.length; i++) {
+	    bfsInfo[i] = {
+	        distance: null,
+	        predecessor: null };
     }
-    return obj
-}
+
+    bfsInfo[source].distance = 0;
+
+    var queue = new Queue();
+    queue.enqueue(source);
 
 
-Goal.neighbors.push
+    while (!queue.isEmpty()) {
+        
+        var u = queue.dequeue()
 
+        for (i = 0; i < graph[u].length; i++) {
 
+            var v = graph[u][i]
 
-Board = new Object
-
-Board.Grid = [
-
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    
-]
-
-
-//  [ Above is the adjacenty matrix for the below grid - 1 representing a path that can be taken    
-// //   0 1 2 3 4 5
-//     [0,0,0,0,1,0], // 0
-//     [0,1,1,1,1,0], // 1
-//     [0,1,0,0,0,0], // 2 
-//     [0,1,1,1,1,0], // 3
-//     [0,0,0,0,0,0]  // 4
-// ]
-
-Board.Player = new Object
-Board.Player.Loc = 5
-Board.Goal = new Object
-Board.Goal.Loc = 23
-
-Board.PlotRoute = function(){
-    ymax = Board.Grid.length
-    xmax = Board.Grid[0].length
-    histogram = Dict() 
-    path = []
-    step = 1
-
-    Loc = new Object
-    Loc.x = Board.Grid.x
-    Loc.y = Board.Grid.y
-
-    path = FindPath(Loc, histogram, step)
-
-    
+            if (bfsInfo[v].distance == null){
 
 
 
-}
+                bfsInfo[v].distance = bfsInfo[u].distance + 1
+                bfsInfo[v].predecessor = u
+
+                queue.enqueue(v)
+            }
+
+            
+        }
+    }
+
+    return bfsInfo;
+};
+
+
+
+var adjList = [
+    [1,3],
+    [0,2,4],
+    [1,5],
+    [0,4,6],
+    [5,3,1,7],
+    [2,5,8],
+    [3,7],
+    [6,8,4],
+    [7,5],
+];
+
+var bfsInfo = doBFS(adjList, 0);
+for (var i = 0; i < adjList.length; i++) {
+    console.log("vertex " + i + ": distance = " + bfsInfo[i].distance + ", predecessor = " + bfsInfo[i].predecessor);
+};
