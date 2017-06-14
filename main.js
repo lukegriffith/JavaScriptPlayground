@@ -1,79 +1,73 @@
 var Queue = function(){
-    this.items=[]
+    this.items = []
 };
 Queue.prototype.enqueue = function(obj){
-    this.items.push(obj);
-}
+    this.items.push(obj)
+};
 Queue.prototype.dequeue = function(){
-    return this.items.pop();
-}
+    return this.items.shift()
+};
 Queue.prototype.isEmpty = function(){
-    return this.items.length === 0;
-}
-
+    return this.items.length == 0 
+};
 
 /*
- * Performs a breadth-first search on a graph
- * @param {array} graph - Graph, represented as adjacency lists.
- * @param {number} source - The index of the source vertex.
- * @returns {array} Array of objects describing each vertex, like
- *     [{distance: _, predecessor: _ }]
- */
-var doBFS = function(graph, source) {
+    performs a breadth-first search on a graph
+    @param graph [array] - Graph represented as an adjacency list.
+    @param source [int] - source index of the vertex.
+*/
+function bfs(graph, source) {
+
     var bfsInfo = [];
 
-    for (var i = 0; i < graph.length; i++) {
-	    bfsInfo[i] = {
-	        distance: null,
-	        predecessor: null };
-    }
+    for (var i = 0; i < graph.length; i++){
+        bfsInfo[i] = {
+            distance: null,
+            predecessor: null
+        };
+    };
 
     bfsInfo[source].distance = 0;
 
     var queue = new Queue();
     queue.enqueue(source);
 
+    while(!queue.isEmpty()){
 
-    while (!queue.isEmpty()) {
-        
-        var u = queue.dequeue()
+        var u = queue.dequeue();
 
-        for (i = 0; i < graph[u].length; i++) {
+        for (var i = 0; i < graph[u].length; i++){
 
-            var v = graph[u][i]
+            var v = graph[u][i];
 
-            if (bfsInfo[v].distance == null){
+            if (bfsInfo[v].distance == null) {
 
+                bfsInfo[v].distance = bfsInfo[u].distance + 1;
+                bfsInfo[v].predecessor = u;
 
-
-                bfsInfo[v].distance = bfsInfo[u].distance + 1
-                bfsInfo[v].predecessor = u
-
-                queue.enqueue(v)
+                queue.enqueue(v);
             }
-
-            
         }
     }
 
     return bfsInfo;
-};
+
+}
 
 
-
-var adjList = [
+var AdjList = [ 
     [1,3],
     [0,2,4],
     [1,5],
     [0,4,6],
-    [5,3,1,7],
-    [2,5,8],
+    [3,5,1,7],
+    [4,2,8],
     [3,7],
-    [6,8,4],
-    [7,5],
-];
+    [8,6,4],
+    [7,5]
+]
 
-var bfsInfo = doBFS(adjList, 0);
-for (var i = 0; i < adjList.length; i++) {
-    console.log("vertex " + i + ": distance = " + bfsInfo[i].distance + ", predecessor = " + bfsInfo[i].predecessor);
-};
+var source = 0 
+
+var bfsInfo = bfs(AdjList, source)
+

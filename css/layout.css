@@ -1,0 +1,25 @@
+
+
+#grid {
+
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 306px;
+    border: solid;
+}
+
+
+.cell {
+    border: 1px solid black;
+    background: whitesmoke;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.active {
+    background: grey;
+}
+
+.path {
+    background: salmon;
+}
