@@ -24,13 +24,15 @@
     background: palevioletred;
 }
 
+.dead:hover {
+    background: grey;
+}
+
 .dead {
     background: grey;
 }
 
-.dead:hover {
-    background: grey;
-}
+
 
 .active {
     background: palevioletred;
