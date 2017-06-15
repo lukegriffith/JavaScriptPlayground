@@ -28,6 +28,9 @@
     background: grey;
 }
 
+.dead:hover {
+    background: grey;
+}
 
 .active {
     background: palevioletred;
