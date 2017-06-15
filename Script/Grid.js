@@ -69,5 +69,3 @@ var AdjList = [
 
 var source = 0 
 
-var bfsInfo = bfs(AdjList, source)
-

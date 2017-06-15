@@ -16,8 +16,18 @@
     min-height: 100px;
 }
 
+.cell:hover {
+    background: seashell;
+}
+
+.active:hover {
+    background: palevioletred;
+}
+
+
+
 .active {
-    background: grey;
+    background: palevioletred;
 }
 
 .path {
