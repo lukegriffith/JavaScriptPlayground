@@ -21,11 +21,18 @@ Stack.prototype.push = function(obj) {
 
 
 var CellClickEvent = function(){
-    console.log(this);
+
+    if (this.className.includes("dead")){
+        throw 'Dead cell. Cant go here.'
+    }
 
     var stack = new Stack();
 
     var pathInfo = bfs(AdjList, source);
+
+    for (var i = 0; i < AdjList.length; i++) {
+         console.log("vertex " + i + ": distance = " +   pathInfo[i].distance + ", predecessor = " + pathInfo[i].predecessor);
+     }
 
     var v = pathInfo[this.id];
 
@@ -40,12 +47,21 @@ var CellClickEvent = function(){
     cells = grid.children; 
 
 
-    for (var i = 0; i < cells.length; i++){
+    var path = document.getElementsByClassName("path");
 
-        console.log(cells[i]);
-        var cell = cells[i]
+
+    // This is needed, because as we change the class of the items, the path list decreases.
+    var pathArrLength = path.length;
+
+    for (var i = 0; i < pathArrLength; i++){
+
+        var cell = path[0];
+
         cell.className = "cell";
     }
+
+    var sourceCell = grid.children[source]
+    sourceCell.className = "cell";
 
     source = Number(this.id);
 

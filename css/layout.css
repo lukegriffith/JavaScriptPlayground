@@ -24,6 +24,9 @@
     background: palevioletred;
 }
 
+.dead {
+    background: grey;
+}
 
 
 .active {
