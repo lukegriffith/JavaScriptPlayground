@@ -54,6 +54,22 @@ function bfs(graph, source) {
 
 }
 
+// Function generates the adjacency list, iterate this and remove the selected
+// dead cells 
+function gridAdjList(h,w){
+    
+    cells = h * w;
+		cellArr = Array()
+    
+    for (i = 0; i < cells; i++) {
+        
+        cellArr.push( Array(i - w, i - 1, i + 1, i + w) )
+    }
+	return cellArr
+}
+
+
+
 
 var AdjList = [ 
     [1,3], //0
